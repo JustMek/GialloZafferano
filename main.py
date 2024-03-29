@@ -69,7 +69,10 @@ def findDescription(soup):
 
 def findCategory(soup):
     for tag in soup.find_all(attrs={"class": "gz-breadcrumb"}):
-        category = tag.li.a.string
+        try:
+            category = tag.li.a.string
+        except AttributeError:
+            category = 'Unknown'
         return category
 
 
